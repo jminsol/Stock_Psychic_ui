@@ -13,9 +13,9 @@ const Display = MatxLoadable({
   loader: () => import("./Display")
 });
 
-const utilitiesRoutes = [
+const predictionsRoutes = [
   {
-    path: '/utilities/color',
+    path: '/prediction/apple',
     component: Color
   },
   {
@@ -27,9 +27,9 @@ const utilitiesRoutes = [
     component: Typography
   },
   {
-    path: "/utilities/display",
+    path: "/prediction/tesla",
     component: Display
   },
 ]
 
-export default utilitiesRoutes;
+export default predictionsRoutes;

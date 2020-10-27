@@ -1,9 +1,11 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 
+import HomeRoutes from "./views/home/HomeRoutes";
 import dashboardRoutes from "./views/dashboard/DashboardRoutes";
-import utilitiesRoutes from "./views/utilities/UtilitiesRoutes";
+import predictionsRoutes from "./views/predictions/PredictionsRoutes";
 import sessionRoutes from "./views/sessions/SessionRoutes";
+import adminRoutes from './views/admin/adminRoutes'
 
 import materialRoutes from "./views/material-kit/MaterialRoutes";
 import dragAndDropRoute from "./views/Drag&Drop/DragAndDropRoute";
@@ -15,7 +17,7 @@ const redirectRoute = [
   {
     path: "/",
     exact: true,
-    component: () => <Redirect to="/dashboard/analytics" />
+    component: () => <Redirect to="/nasdaq/analytics" />
   }
 ];
 
@@ -26,10 +28,12 @@ const errorRoute = [
 ];
 
 const routes = [
+  ...adminRoutes,
+  ...HomeRoutes,
   ...sessionRoutes,
   ...dashboardRoutes,
   ...materialRoutes,
-  ...utilitiesRoutes,
+  ...predictionsRoutes,
   ...dragAndDropRoute,
   ...formsRoutes,
   ...mapRoutes,
