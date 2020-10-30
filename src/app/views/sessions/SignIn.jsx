@@ -47,7 +47,7 @@ const SignIn = (props) => {
     .then(res => {
       alert(`Welcome! ${res.data["name"]}`)
       sessionStorage.setItem("sessionMember", res.data['email'])
-      history.push("/")
+      history.push("/nasdaq/apple")
       window.location.reload()
     })
     .catch(err => {

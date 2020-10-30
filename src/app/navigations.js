@@ -3,31 +3,25 @@ export const navigations = [
   {
     name: "HOME",
     icon: "home",
-    path: "/home"
+    path: "/session/signin"
   },
-  {
-    name: "게시판",
-    icon: "description",
-    children: [
-      {
-        name: "글 목록",
-        path: "/forms/basic",
-        iconText: "B"
-      },
-      {
-        name: "글쓰기",
-        path: "/forms/editor",
-        iconText: "W"
-      }
-    ]
-  },
+
   {
     name: "NASDOQ",
     icon: "dashboard",
     children: [
       {
         name: "Current Market",
-        path: "/nasdaq/analytics",
+        children:[
+          {
+            name: "Apple",
+            path: "/nasdaq/apple"
+          },
+          {
+            name: "Tesla",
+            path: "/nasdaq/tesla"
+          }
+        ]
       },
       {
       name: "Stock Prediction",
@@ -49,7 +43,21 @@ export const navigations = [
     ]
     }]
   },
- 
+  {
+    name: "게시판",
+    icon: "description",
+    children: [
+      {
+        name: "글 목록",
+        path: "/forms/basic",
+        iconText: "B"
+      },
+      {
+        name: "글쓰기",
+        path: "/forms/editor",
+        iconText: "W"
+      }]
+  },
   
 ];
 

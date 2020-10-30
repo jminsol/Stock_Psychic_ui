@@ -17,7 +17,7 @@ const redirectRoute = [
   {
     path: "/",
     exact: true,
-    component: () => <Redirect to="/nasdaq/analytics" />
+    component: () => <Redirect to="/home" />
   }
 ];
 

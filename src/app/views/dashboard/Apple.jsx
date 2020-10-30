@@ -1,54 +1,3 @@
-// import React, { Component, Fragment } from "react";
-// import ModifiedAreaChart from "../shared/ModifiedAreaChart";
-
-// import { withStyles } from "@material-ui/styles";
-
-// class Dashboard1 extends Component {
-//   state = {};
-
-//   render() {
-//     // let { theme } = this.props;
-
-//     return (
-//       <Fragment>
-//         <div className="pb-86 pt-30 px-30 bg-primary">
-//           <ModifiedAreaChart
-//             height="280px"
-//             option={{
-//               series: [
-//                 {
-//                   data: [34, 45, 31, 45, 31, 43, 26, 43, 31, 45, 33, 40],
-//                   type: "line"
-//                 }
-//               ],
-//               xAxis: {
-//                 data: [
-//                   "Jan",
-//                   "Feb",
-//                   "Mar",
-//                   "Apr",
-//                   "May",
-//                   "Jun",
-//                   "Jul",
-//                   "Aug",
-//                   "Sep",
-//                   "Oct",
-//                   "Nov",
-//                   "Dec"
-//                 ]
-//               }
-//             }}
-//           ></ModifiedAreaChart>
-//         </div>
-
-//       </Fragment>
-//     );
-//   }
-// }
-
-// export default withStyles({}, { withTheme: true })(Dashboard1);
-
-/* App.js */
 import { withStyles } from "@material-ui/styles";
 import React, { Component } from "react";
 import CanvasJSReact from './canvasjs.stock.react';
@@ -56,7 +5,7 @@ import {axios} from 'axios'
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart;
  
-class App2 extends Component {
+class AppleGraph extends Component {
   constructor(props) {
     super(props);
     this.state = { dataPoints1: [], dataPoints2: [], dataPoints3: [], isLoaded: false };
@@ -64,7 +13,8 @@ class App2 extends Component {
  
   componentDidMount() {
     //Reference: https://reactjs.org/docs/faq-ajax.html#example-using-ajax-results-to-set-local-state
-    fetch("https://canvasjs.com/data/docs/ltcusd2018.json")
+    // fetch("https://canvasjs.com/data/docs/ltcusd2018.json")
+	  fetch(`http://localhost:8080/nasdaq/apple`)
       .then(res => res.json())
       .then(
         (data) => {
@@ -76,10 +26,12 @@ class App2 extends Component {
                 Number(data[i].open),
                 Number(data[i].high),
                 Number(data[i].low),
-                Number(data[i].close)
+                Number(data[i].close),
+                Number(data[i].adjclose)
+
               ]
             });
-            dps2.push({x: new Date(data[i].date), y: Number(data[i].volume_usd)});
+            dps2.push({x: new Date(data[i].date), y: Number(data[i].volume)});
             dps3.push({x: new Date(data[i].date), y: Number(data[i].close)});
           }
           this.setState({
@@ -94,9 +46,9 @@ class App2 extends Component {
  
   render() {
     const options = {
-      theme: "light2",
+      theme: "dark2",
       title:{
-        text:"React StockChart with Date-Time Axis"
+        text:"Apple, Inc.(APPL)"
       },
       subtitles: [{
         text: "Price-Volume Trend"
@@ -117,7 +69,7 @@ class App2 extends Component {
           }
         },
         axisY: {
-          title: "Litecoin Price",
+          title: "US Dollar",
           prefix: "$",
           tickLength: 0
         },
@@ -158,8 +110,8 @@ class App2 extends Component {
           dataPoints: this.state.dataPoints3
         }],
         slider: {
-          minimum: new Date("2018-05-01"),
-          maximum: new Date("2018-07-01")
+          minimum: new Date("2000-01-01"),
+          maximum: new Date("2020-10-28")
         }
       }
     };
@@ -183,4 +135,5 @@ class App2 extends Component {
     );
   }
 }
-export default App2; 
+ 
+export default withStyles({}, { withTheme: true })(AppleGraph);
