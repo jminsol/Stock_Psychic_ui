@@ -31,13 +31,13 @@ export const navigations = [
         name: "Apple",
         // icon: ()=> <AppleIcon/>,
         icon: "phone_iphone",
-        path: "/prediction/apple",
+        path: "/nasdaq/pred_apple",
         iconText: "C"
       },
       {
         name: "Tesla",
         icon: "battery_charging_full",
-        path: "/prediction/tesla",
+        path: "/nasdaq/pred_tesla",
         iconText: "D"
       }
     ]
