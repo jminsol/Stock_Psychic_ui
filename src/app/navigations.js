@@ -1,4 +1,5 @@
-// import AppleIcon from '@material-ui/icons/Apple';
+import AppleIcon from '@material-ui/icons/Apple';
+import Apple from './views/dashboard/Apple';
 export const navigations = [
   {
     name: "HOME",
@@ -15,10 +16,12 @@ export const navigations = [
         children:[
           {
             name: "Apple",
+            icon: 'apple',
             path: "/nasdaq/apple"
           },
           {
             name: "Tesla",
+            icon : 'drive_eta',
             path: "/nasdaq/tesla"
           }
         ]

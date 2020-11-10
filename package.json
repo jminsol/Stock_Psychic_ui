@@ -76,6 +76,7 @@
     "@babel/runtime": "^7.5.5",
     "axios-mock-adapter": "^1.17.0",
     "cross-env": "^5.2.0",
-    "gh-pages": "^2.1.1"
+    "gh-pages": "^2.1.1",
+    "grpc": "1.23.3"
   }
 }

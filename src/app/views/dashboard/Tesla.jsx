@@ -1,16 +1,15 @@
 import { withStyles } from "@material-ui/styles";
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import CanvasJSReact from './canvasjs.stock.react';
-import ReactEcharts from "echarts-for-react";
-var CanvasJS = CanvasJSReact.CanvasJS;
+import DoughnutChart from '../charts/echarts/Doughnut';
+// import TableCard from '../shared/TableCard'
+import {Grid, Card} from '@material-ui/core';
 var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart;
- 
 class TeslaGraph extends Component {
   constructor(props) {
     super(props);
     this.state = { dataPoints1: [], dataPoints2: [], dataPoints3: [], isLoaded: false };
   }
- 
   componentDidMount() {
     //Reference: https://reactjs.org/docs/faq-ajax.html#example-using-ajax-results-to-set-local-state
     // fetch("https://canvasjs.com/data/docs/ltcusd2018.json")
@@ -28,7 +27,6 @@ class TeslaGraph extends Component {
                 Number(data[i].low),
                 Number(data[i].close),
                 Number(data[i].adjclose)
-
               ]
             });
             dps2.push({x: new Date(data[i].date), y: Number(data[i].volume)});
@@ -43,8 +41,8 @@ class TeslaGraph extends Component {
         }
       )
   }
- 
   render() {
+    let {theme} = this.props;
     const options = {
       theme: "dark2",
       title:{
@@ -76,7 +74,7 @@ class TeslaGraph extends Component {
         toolTip: {
           shared: true
         },
-        data: [{
+        data: [{ 
           name: "Price (in USD)",
           yValueFormatString: "$#,###.##",
           type: "candlestick",
@@ -121,130 +119,34 @@ class TeslaGraph extends Component {
       margin: "auto"
     };
     return (
-      <div> 
-        <div>
-          {
-            // Reference: https://reactjs.org/docs/conditional-rendering.html#inline-if-with-logical--operator
-            this.state.isLoaded && 
-            <CanvasJSStockChart containerProps={containerProps} options = {options}
-              /* onRef = {ref => this.chart = ref} */
-            />
-          }
+      <Fragment>
+        <div className="pb-86 pt-30 px-30 bg-primary">
+          <CanvasJSStockChart 
+          containerProps={containerProps}
+          options = {options}
+          ></CanvasJSStockChart>
         </div>
-      </div>
+        <div className="analytics m-sm-30 mt--72">
+          <Grid container spacing={2}
+        direction="row"
+        justify="space-evenly"
+        alignItems="center">
+            <Card className="px-30 py-30 mb-16">
+              <div className="card-title">News Sentiment</div>
+              <div className="card-subtitle">First half of 2020</div>
+              <DoughnutChart
+              height="300px"
+              color={[
+                "#b28704",
+                "#e91e63",
+                "#8bc34a"
+              ]}
+              />
+            </Card>
+            </Grid>
+        </div>
+      </Fragment>
     );
   }
 }
- 
-// export default withStyles({}, { withTheme: true })(TeslaGraph);
-
-
-const DoughnutChart = ({ height, color = [], theme }) => {
-  const option = {
-    legend: {
-      show: true,
-      itemGap: 20,
-      icon: "circle",
-      bottom: 0,
-      textStyle: {
-        color: theme.palette.text.secondary,
-        fontSize: 13,
-        fontFamily: "roboto"
-      }
-    },
-    tooltip: {
-      show: false,
-      trigger: "item",
-      formatter: "{a} <br/>{b}: {c} ({d}%)"
-    },
-    xAxis: [
-      {
-        axisLine: {
-          show: false
-        },
-        splitLine: {
-          show: false
-        }
-      }
-    ],
-    yAxis: [
-      {
-        axisLine: {
-          show: false
-        },
-        splitLine: {
-          show: false
-        }
-      }
-    ],
-
-    series: [
-      {
-        name: "Traffic Rate",
-        type: "pie",
-        radius: ["45%", "72.55%"],
-        center: ["50%", "50%"],
-        avoidLabelOverlap: false,
-        hoverOffset: 5,
-        stillShowZeroSum: false,
-        label: {
-          normal: {
-            show: false,
-            position: "center", // shows the description data to center, turn off to show in right side
-            textStyle: {
-              color: theme.palette.text.secondary,
-              fontSize: 13,
-              fontFamily: "roboto"
-            },
-            formatter: "{a}"
-          },
-          emphasis: {
-            show: true,
-            textStyle: {
-              fontSize: "14",
-              fontWeight: "normal"
-              // color: "rgba(15, 21, 77, 1)"
-            },
-            formatter: "{b} \n{c} ({d}%)"
-          }
-        },
-        labelLine: {
-          normal: {
-            show: false
-          }
-        },
-        data: [
-          {
-            value: 65,
-            name: "Google"
-          },
-          {
-            value: 20,
-            name: "Facebook"
-          },
-          { value: 15, name: "Others" }
-        ],
-        itemStyle: {
-          emphasis: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: "rgba(0, 0, 0, 0.5)"
-          }
-        }
-      }
-    ]
-  };
-
-  return (
-    <ReactEcharts
-      style={{ height: height }}
-      option={{
-        ...option,
-        color: [...color]
-      }}
-    />
-  );
-};
-
-export default withStyles({}, { withTheme: true } (TeslaGraph, DoughnutChart));
-
+export default withStyles({}, { withTheme: true }) (TeslaGraph, DoughnutChart);
