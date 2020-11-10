@@ -81,7 +81,7 @@ function TeslaNews() {
                 <TableCell className="px-0" colSpan={1}>
                   <IconButton>
                     <Icon color="secondary"> link </Icon>
-                    <a href={news.link} fontSize ="9px"></a>
+                    <a href={news.link} > link </a>
                   </IconButton>
                 </TableCell>
               </TableRow>
