@@ -7,6 +7,9 @@ const Apple = MatxLoadable({
 const Tesla = MatxLoadable({
   loader: () => import("./Tesla")
 })
+const TeslaNews = MatxLoadable({
+  loader: () => import("./TeslaNews")
+})
 const dashboardRoutes = [
   {
     path: "/nasdaq/apple",
@@ -16,6 +19,11 @@ const dashboardRoutes = [
   {
     path: "/nasdaq/tesla",
     component: Tesla,
+    auth: authRoles.admin
+  },
+  {
+    path: "/nasdaq/tesla_news",
+    component: TeslaNews,
     auth: authRoles.admin
   }
 ];

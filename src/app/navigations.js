@@ -16,7 +16,7 @@ export const navigations = [
         children:[
           {
             name: "Apple",
-            icon: 'apple',
+            icon: 'phone_iphone',
             path: "/nasdaq/apple"
           },
           {
@@ -32,16 +32,13 @@ export const navigations = [
       children: [
       {
         name: "Apple",
-        // icon: ()=> <AppleIcon/>,
         icon: "phone_iphone",
-        path: "/nasdaq/pred_apple",
-        iconText: "C"
+        path: "/nasdaq/apple_pred"
       },
       {
         name: "Tesla",
         icon: "battery_charging_full",
-        path: "/nasdaq/pred_tesla",
-        iconText: "D"
+        path: "/nasdaq/tesla_news"
       }
     ]
     }]

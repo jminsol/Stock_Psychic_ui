@@ -20,6 +20,7 @@ import {
   deleteNotification
 } from "../../redux/actions/NotificationActions";
 
+
 function NotificationBar(props) {
   const {
     container,

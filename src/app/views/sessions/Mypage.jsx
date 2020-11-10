@@ -9,7 +9,7 @@ import DoughnutChart from "../charts/echarts/Doughnut"
 
 import ModifiedAreaChart from "../shared/ModifiedAreaChart"
 import StatCards from "../shared/StatCards"
-import TableCard from "../shared/TableCard"
+import TableCard from "../dashboard/TeslaNews"
 import RowCards from "../shared/RowCards"
 import StatCards2 from "../shared/StatCards2"
 import UpgradeCard from "../shared/UpgradeCard"
