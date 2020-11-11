@@ -10,20 +10,9 @@ import {
   TableBody,
 } from "@material-ui/core";
 import axios from 'axios';
-import {Link} from 'react-router-dom'
 
 function TeslaNews() {
   const [newsList, setNews] = useState(null);
-
-
-  
-  // const fetchData = async () => {
-  //   const response = axios.get(
-  //     `http://localhost:8080/nasdaq/apple_news`
-  //   );
-
-  //   setNews(response.data);
-  // };
 
   useEffect(() =>{
     axios.get(`http://localhost:8080/nasdaq/tesla_news`)

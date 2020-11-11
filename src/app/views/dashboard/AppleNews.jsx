@@ -10,7 +10,6 @@ import {
   TableBody,
 } from "@material-ui/core";
 import axios from 'axios';
-import {Link} from 'react-router-dom'
 
 function AppleNews() {
   const [newsList, setNews] = useState(null);
