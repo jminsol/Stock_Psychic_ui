@@ -39,39 +39,27 @@ function AppleNews() {
               <TableCell className="px-0" colSpan={4}>
                 Content
               </TableCell>
-              <TableCell className="px-0" colSpan={1}>
-                Link
-              </TableCell>
             </TableRow>
           </TableHead>
 
           <TableBody>
             {newsList && newsList.map((news, index) => (
-                
-
               <TableRow key={index}>
-                <TableCell className="px-0 capitalize" colSpan={4} align="left">
+                <TableCell className="px-0 capitalize" colSpan={4} align="left" >
                   <div className="flex flex-middle">
                     <img
                       className="circular-image-medium"
                       src={news.image}
                       alt=""
                     />
-                    <p className="m-0 ml-8">{news.headline}</p>
+                    <a className="m-0 ml-8" href={news.link}>{news.headline}</a>
                   </div>
                 </TableCell>
-                <TableCell className="px-0" align="left" colSpan={2}>
+                <TableCell className="px-0" align="center" colSpan={2}>
                 <p>{new Date(news.date).toDateString()} </p> 
                 </TableCell>
                 <TableCell className="px-0" align="left" colSpan={4}>
                   {news.content}
-                </TableCell>
-
-                <TableCell className="px-0" colSpan={1}>
-                  <IconButton>
-                    <Icon color="secondary"> link </Icon>
-                    <a href={news.link} > link </a>
-                  </IconButton>
                 </TableCell>
               </TableRow>
             ))}

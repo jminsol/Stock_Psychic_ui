@@ -7,13 +7,13 @@ import {
 
 import DoughnutChart from "../charts/echarts/Doughnut"
 
-import ModifiedAreaChart from "../shared/ModifiedAreaChart"
-import StatCards from "../shared/StatCards"
+import ModifiedAreaChart from "../dashboard/shared/ModifiedAreaChart"
+import StatCards from "../dashboard/shared/StatCards"
 import TableCard from "../dashboard/TeslaNews"
-import RowCards from "../shared/RowCards"
-import StatCards2 from "../shared/StatCards2"
-import UpgradeCard from "../shared/UpgradeCard"
-import Campaigns from "../shared/Campaigns"
+import RowCards from "../dashboard/shared/RowCards"
+import StatCards2 from "../dashboard/shared/StatCards2"
+import UpgradeCard from "../dashboard/shared/UpgradeCard"
+import Campaigns from "../dashboard/shared/Campaigns"
 import { withStyles } from "@material-ui/styles"
 
 import axios from 'axios'

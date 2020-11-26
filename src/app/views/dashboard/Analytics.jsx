@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import ModifiedAreaChart from "../shared/ModifiedAreaChart";
+import ModifiedAreaChart from "./shared/ModifiedAreaChart";
 
 import { withStyles } from "@material-ui/styles";
 

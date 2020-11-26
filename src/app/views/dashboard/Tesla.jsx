@@ -4,6 +4,8 @@ import CanvasJSReact from './canvasjs.stock.react';
 import DoughnutChart from '../charts/echarts/Doughnut';
 import TeslaNews from './TeslaNews' 
 import {Grid, Card} from '@material-ui/core';
+import Prediction from './Prediction'
+
 var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart;
 class TeslaGraph extends Component {
   constructor(props) {
@@ -116,7 +118,7 @@ class TeslaGraph extends Component {
         }],
         slider: {
           minimum: new Date("2010-06-29"),
-          maximum: new Date("2020-10-28")
+          maximum: new Date("2020-11-24")
         }
       }
     };
@@ -138,18 +140,8 @@ class TeslaGraph extends Component {
         direction="row"
         justify="space-evenly"
         alignItems="center">
-            <Card className="px-30 py-30 mb-16">
-              <div className="card-title">News Sentiment</div>
-              <div className="card-subtitle">First half of 2020</div>
-              <DoughnutChart
-              height="300px"
-              color={[
-                "#b28704",
-                "#e91e63",
-                "#8bc34a"
-              ]}
-              />
-            </Card>
+          
+            <Prediction/>
             <TeslaNews/>
             
             </Grid>

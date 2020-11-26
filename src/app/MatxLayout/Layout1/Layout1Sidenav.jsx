@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import {
   Switch,
@@ -23,6 +23,12 @@ import Brand from "../SharedCompoents/Brand";
 import SidenavTheme from "../MatxTheme/SidenavTheme";
 import { isMdScreen } from "utils";
 
+import { Link } from 'react-router-dom'
+
+import VpnKeyRoundedIcon from '@material-ui/icons/VpnKeyRounded';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+
+
 const styles = theme => ({});
 
 const IconButtonWhite = withStyles(theme => ({
@@ -43,7 +49,7 @@ class Layout1Sidenav extends Component {
   state = {
     sidenavToggleChecked: false,
     // hidden: true
-  };
+  }; 
 
   componentWillMount() {
 
@@ -84,6 +90,8 @@ class Layout1Sidenav extends Component {
   };
 
   handleSignOut = () => {
+    sessionStorage.removeItem("sessionMember")
+    window.location.reload()
     this.props.logoutUser();
   };
 
@@ -100,16 +108,21 @@ class Layout1Sidenav extends Component {
   );
 
   renderUser = () => {
-    let { user } = this.props;
+
+    const sessionMember = sessionStorage.getItem("sessionMember")
+    
+    // let { user } = this.props;
     return (
       <div className="sidenav__user">
-        <div className="username-photo">
+        {/* <div className="username-photo">
           <img src={user.photoURL} alt="user" />
-        </div>
+        </div> */}
+        {sessionMember !== null
+        ?
         <div className="ml-8">
           <span className="username">
             {/* <Icon>lock</Icon> */}
-            {user.displayName}
+            {sessionMember}
           </span>
           <div className="user__menu">
             <MatxMenu
@@ -126,18 +139,31 @@ class Layout1Sidenav extends Component {
               }
             >
               <MenuItem className="flex flex-middle" style={{ minWidth: 185 }}>
+              <Link className="flex flex-middle" to="/">
                 <Icon> home </Icon>
                 <span className="pl-16"> Home </span>
+              </Link>
               </MenuItem>
               <MenuItem className="flex flex-middle" style={{ minWidth: 185 }}>
+              <Link className="flex flex-middle" to="/session/accountsetting">
                 <Icon> settings </Icon>
                 <span className="pl-16"> Account Setting </span>
+                </Link>
               </MenuItem>
             </MatxMenu>
 
-            <Tooltip title="Profile">
+            {/* <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="simple-modal-title"
+              aria-describedby="simple-modal-description"
+            ></Modal> */}
+
+            <Tooltip title="mypage">
               <IconButtonWhite aria-label="Delete" className="" size="small">
+              <Link className="flex flex-middle" to="/session/mypage">
                 <IconSmall>person</IconSmall>
+              </Link>
               </IconButtonWhite>
             </Tooltip>
             <Tooltip title="Sign out">
@@ -152,6 +178,40 @@ class Layout1Sidenav extends Component {
             </Tooltip>
           </div>
         </div>
+        :
+        <div className="ml-8">
+          <span className="username">
+            {/* <Icon>lock</Icon> */}
+            Hello Stranger!
+          </span>
+          <div className="user__menu">
+            <Tooltip title="Sign up">
+              <Link to="/session/signup">
+                <IconButtonWhite
+                  aria-label="Delete"
+                  className=""
+                  size="small"
+                >
+                  <IconSmall><CheckCircleIcon style={{ fontSize: "small" }}/></IconSmall>
+                  <span style={{fontSize: "0.9rem"}}>Sign up</span>
+                </IconButtonWhite>
+              </Link>
+            </Tooltip>
+            <Tooltip title="Sign in">
+              <Link to="/session/signin">
+                <IconButtonWhite
+                  aria-label="Delete"
+                  className=""
+                  size="small"
+                >
+                  <IconSmall><VpnKeyRoundedIcon style={{ fontSize: "small" }}/></IconSmall>
+                  <span style={{fontSize: "0.9rem"}}>Sign in</span>
+                </IconButtonWhite>
+              </Link>
+            </Tooltip>
+          </div>
+        </div>
+        }
       </div>
     );
   };

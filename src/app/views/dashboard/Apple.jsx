@@ -1,8 +1,10 @@
 import { withStyles } from "@material-ui/styles";
 import React, { Component, Fragment } from "react";
 import CanvasJSReact from './canvasjs.stock.react';
+// import DoughnutChart from '../charts/echarts/Doughnut';
 import AppleNews from './AppleNews' 
-import {Grid, Card} from '@material-ui/core';
+import {Grid, Card, Container} from '@material-ui/core';
+import Prediction from './Prediction'
 
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart;
@@ -119,7 +121,7 @@ class AppleGraph extends Component {
         }],
         slider: {
           minimum: new Date("2000-01-01"),
-          maximum: new Date("2020-10-28")
+          maximum: new Date("2020-11-24")
         }
       }
     };
@@ -129,24 +131,28 @@ class AppleGraph extends Component {
       margin: "auto"
     };
     return (
-      <Fragment>
-        <div className="pb-86 pt-30 px-30 bg-primary">
+        <Container maxWidth={false} align = "center" justify = "center" alignItems="left" wrap='nowrap'>
+
+        <div className="pb-86 pt-30 px-30">
+        {/* <div className="pb-86 pt-30 px-30 bg-primary"> */}
           <CanvasJSStockChart 
           containerProps={containerProps}
           options = {options}
           ></CanvasJSStockChart>
         </div>
         <div className="analytics m-sm-30 mt--72">
-          <Grid container spacing={2}
+          <Grid item xs container spacing={2}
         direction="row"
         justify="space-evenly"
         alignItems="center">
-        
-            <AppleNews/>
-            
             </Grid>
+          <Grid item xs={4} md={6} sm={4}> 
+            <Prediction/>
+                </Grid> 
+          <AppleNews/>
+            
         </div>
-      </Fragment>
+        </Container>
     );
   }
 }

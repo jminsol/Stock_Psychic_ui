@@ -1,17 +1,20 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 
-import HomeRoutes from "./views/home/HomeRoutes";
 import dashboardRoutes from "./views/dashboard/DashboardRoutes";
-import predictionsRoutes from "./views/predictions/PredictionsRoutes";
+import utilitiesRoutes from "./views/utilities/UtilitiesRoutes";
 import sessionRoutes from "./views/sessions/SessionRoutes";
 import adminRoutes from './views/admin/adminRoutes'
+import homeRoutes from './views/home/HomeRoutes'
 
 import materialRoutes from "./views/material-kit/MaterialRoutes";
 import dragAndDropRoute from "./views/Drag&Drop/DragAndDropRoute";
 
 import formsRoutes from "./views/forms/FormsRoutes";
 import mapRoutes from "./views/map/MapRoutes";
+
+import kospiRoutes from "./views/kospi/KospiRoutes";
+import kospipredRoutes from "./views/kospi_pred/kospipredRoutes";
 
 const redirectRoute = [
   {
@@ -29,11 +32,13 @@ const errorRoute = [
 
 const routes = [
   ...adminRoutes,
-  ...HomeRoutes,
   ...sessionRoutes,
   ...dashboardRoutes,
+  ...homeRoutes,
   ...materialRoutes,
-  ...predictionsRoutes,
+  ...kospiRoutes,
+  ...kospipredRoutes,
+  ...utilitiesRoutes,
   ...dragAndDropRoute,
   ...formsRoutes,
   ...mapRoutes,

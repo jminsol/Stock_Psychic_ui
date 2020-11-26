@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import React, { Component, useState } from "react";
+import { withRouter, useHistory } from "react-router-dom";
 import {
   Icon,
   IconButton,
@@ -16,7 +16,11 @@ import { MatxMenu, MatxSearchBox } from "matx";
 import { isMdScreen } from "utils";
 import NotificationBar from "../SharedCompoents/NotificationBar";
 import { Link } from "react-router-dom";
-import ShoppingCart from "../SharedCompoents/ShoppingCart";
+import EnterAdmin from "../SharedCompoents/EnterAdmin";
+
+import VpnKeyRoundedIcon from '@material-ui/icons/VpnKeyRounded';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+
 
 const styles = theme => ({
   root: {
@@ -55,10 +59,12 @@ class Layout1Topbar extends Component {
     this.updateSidebarMode({ mode });
   };
 
+
   handleSignOut = () => {
+    sessionStorage.removeItem("sessionMember")
+    window.location.reload()
     this.props.logoutUser();
   };
-
   render() {
     let { theme, settings, className, style } = this.props;
     const topbarTheme =
@@ -78,30 +84,39 @@ class Layout1Topbar extends Component {
 
                 <div className="hide-on-mobile">
                   <IconButton>
-                    <Icon>mail_outline</Icon>
+                    <Link className="flex flex-middle" to="/session/signin">
+                      <Icon><VpnKeyRoundedIcon></VpnKeyRoundedIcon></Icon>
+                      {/* 이 부분이 나중에 NASDAQ / KOSPI 넘나드는 버튼으로 바뀔 예정 */}
+                    </Link>
                   </IconButton>
 
-                  <IconButton>
+                  {/* <IconButton>
                     <Icon>web_asset</Icon>
                   </IconButton>
-
                   <IconButton>
                     <Icon>star_outline</Icon>
-                  </IconButton>
+                  </IconButton> */}
                 </div>
               </div>
               <div className="flex flex-middle">
                 <MatxSearchBox />
 
-                <NotificationBar />
+                {/* <NotificationBar /> */}
 
-                <ShoppingCart></ShoppingCart>
-
+                {this.props.isAuth == 'admin@stockpsychic.com'
+                ?
+                <EnterAdmin></EnterAdmin>
+                :
+                <></>
+                }
+                
+                {this.props.isAuth !== null
+                ?
                 <MatxMenu
                   menuButton={
                     <img
                       className="mx-8 text-middle circular-image-small cursor-pointer"
-                      src="/assets/images/face-6.jpg"
+                      src="/assets/images/stock_img.jpg"
                       alt="user"
                     />
                   }
@@ -115,7 +130,7 @@ class Layout1Topbar extends Component {
                   <MenuItem style={{ minWidth: 185 }}>
                     <Link
                       className="flex flex-middle"
-                      to="/page-layouts/user-profile"
+                      to="/session/mypage"
                     >
                       <Icon> person </Icon>
                       <span className="pl-16"> Profile </span>
@@ -125,8 +140,13 @@ class Layout1Topbar extends Component {
                     className="flex flex-middle"
                     style={{ minWidth: 185 }}
                   >
-                    <Icon> settings </Icon>
-                    <span className="pl-16"> Settings </span>
+                    <Link
+                      className="flex flex-middle"
+                      to="/session/accountsetting"
+                    >
+                      <Icon> settings </Icon>
+                      <span className="pl-16"> Settings </span>
+                    </Link>
                   </MenuItem>
                   <MenuItem
                     onClick={this.handleSignOut}
@@ -137,6 +157,40 @@ class Layout1Topbar extends Component {
                     <span className="pl-16"> Logout </span>
                   </MenuItem>
                 </MatxMenu>
+                :
+                <MatxMenu
+                  menuButton={
+                    <img
+                      className="mx-8 text-middle circular-image-small cursor-pointer"
+                      src="/assets/images/stock_img.jpg"
+                      alt="member"
+                    />
+                  }
+                >
+                  <MenuItem style={{ minWidth: 185 }}>
+                    <Link className="flex flex-middle" to="/">
+                      <Icon> home </Icon>
+                      <span className="pl-16"> Home </span>
+                    </Link>
+                  </MenuItem>
+                  <MenuItem style={{ minWidth: 185 }}>
+                    <Link
+                      className="flex flex-middle"
+                      to="/session/signup"
+                    >
+                      <Icon><CheckCircleIcon/></Icon>
+                      <span className="pl-16"> Sign up </span>
+                    </Link>
+                  </MenuItem>
+                  <MenuItem style={{ minWidth: 185 }}>
+                    <Link className="flex flex-middle" to="/session/signin">
+                      <Icon> <VpnKeyRoundedIcon/> </Icon>
+                      <span className="pl-16"> Sign in </span>
+                    </Link>
+                  </MenuItem>
+                </MatxMenu>
+                }
+                
               </div>
             </div>
           </div>

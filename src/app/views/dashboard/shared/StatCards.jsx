@@ -16,8 +16,7 @@ const StatCards = ({theme}) => {
             <Icon
               style={{
                 fontSize: "44px",
-                opacity: 0.6,
-                color: theme.palette.primary.main
+                opacity: 0.6
               }}
             >
               group
@@ -40,8 +39,7 @@ const StatCards = ({theme}) => {
             <Icon
               style={{
                 fontSize: "44px",
-                opacity: 0.6,
-                color: theme.palette.primary.main
+                opacity: 0.6
               }}
             >
               attach_money
@@ -64,8 +62,7 @@ const StatCards = ({theme}) => {
             <Icon
               style={{
                 fontSize: "44px",
-                opacity: 0.6,
-                color: theme.palette.primary.main
+                opacity: 0.6
               }}
             >
               store
@@ -90,8 +87,7 @@ const StatCards = ({theme}) => {
             <Icon
               style={{
                 fontSize: "44px",
-                opacity: 0.6,
-                color: theme.palette.primary.main
+                opacity: 0.6
               }}
             >
               shopping_cart

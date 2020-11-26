@@ -1,18 +1,16 @@
-import AppleIcon from '@material-ui/icons/Apple';
-import Apple from './views/dashboard/Apple';
 export const navigations = [
   {
     name: "HOME",
     icon: "home",
-    path: "/session/signin"
+    path: "/home",
   },
-
   {
     name: "NASDOQ",
     icon: "dashboard",
     children: [
       {
         name: "Current Market",
+        icon: "show_chart",
         children:[
           {
             name: "Apple",
@@ -25,39 +23,49 @@ export const navigations = [
             path: "/nasdaq/tesla"
           }
         ]
-      },
-      {
-      name: "Stock Prediction",
-      icon: "show_chart",
-      children: [
-      {
-        name: "Apple",
-        icon: "phone_iphone",
-        path: "/nasdaq/apple_pred"
-      },
-      {
-        name: "Tesla",
-        icon: "battery_charging_full",
-        path: "/nasdaq/tesla_news"
-      }
-    ]
     }]
   },
   {
-    name: "게시판",
-    icon: "description",
-    children: [
-      {
-        name: "글 목록",
-        path: "/forms/basic",
-        iconText: "B"
-      },
-      {
-        name: "글쓰기",
-        path: "/forms/editor",
-        iconText: "W"
-      }]
-  },
-  
-];
+    name: "KOSPI",
+    icon: "dashboard",
+    children:[
 
+      {name: "Current Marekt",
+      icon: "multiline_chart",
+      children:[
+        {name: "LG Chem",
+         path: "/kospi/lgchem",
+         icon:"battery_charging_full"},
+         
+         {name: "LG Innotek",
+          path: "/kospi/lginnotek",
+          icon:"camera"}
+    ]
+  },
+    
+    {
+      name: "Kospi Prediction",
+      icon: "multiline_chart",
+      children: [
+        {
+          name: "LG Chem",
+          path: "/kospi_pred/lgchem_pred",
+          icon:"battery_charging_full",
+          iconText: "C"
+        },
+        {
+          name: "LG Innotek",
+          icon:"camera",
+          path: "/kospi_pred/lginnotek_pred",
+          iconText: "S"
+        }
+
+      ]
+    }]
+  },
+
+  {
+    name: "Notice",
+    icon: "description",
+    path: "/forms/basic"
+  },]
